@@ -49,6 +49,50 @@ The built files will be in the `dist` directory.
 pnpm preview
 ```
 
+## 🌐 GitHub Pages Deployment
+
+The application is configured to deploy to GitHub Pages at `https://<username>.github.io/threejs/`.
+
+### Setup Instructions
+
+1. **Create a GitHub repository** named `threejs` (or your preferred name)
+2. **Push your code** to the repository:
+   ```bash
+   git remote add origin https://github.com/<username>/threejs.git
+   git branch -M main
+   git push -u origin main
+   ```
+
+3. **Enable GitHub Pages**:
+   - Go to your repository Settings → Pages
+   - Under "Source", select "GitHub Actions"
+   - The workflow will automatically deploy on every push to `main`
+
+4. **Update base path** (if needed):
+   - If your repository has a different name, update `base` in `vite.config.ts`:
+     ```typescript
+     base: "/your-repo-name/",
+     ```
+
+### Automatic Deployment
+
+The repository includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that:
+- Automatically builds the project on every push to `main`
+- Deploys to GitHub Pages
+- Uses pnpm for dependency management
+- Runs TypeScript compilation and Vite build
+
+### Manual Deployment
+
+If you prefer manual deployment:
+
+```bash
+pnpm build
+# Then copy the contents of dist/ to your gh-pages branch
+```
+
+**Note**: The base path in `vite.config.ts` is set to `/threejs/` for GitHub Pages. If your repository name is different, update this path accordingly.
+
 ## ✨ Features
 
 ### Core Functionality
